@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- 
+Author: magouill 
+Date: 2024-10-22
+Description: Wegpage mockup for downloading the Project Legacy's files
+-->
+    <title>Project Legacy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/d-din');
+        @import url('https://fonts.cdnfonts.com/css/agnella');
+
+        body {
+            font-family: 'D-DIN', sans-serif;
+            background-color: #2a2a2a;
+            background: url('Media/LegacyJungle1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: -1;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        /* Floating Navbar */
+        .navbar {
+            background-color: #2a2a2a;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            position: fixed;
+            left: 0;
+            top: 10px;
+            width: 100%;
+            padding: 0px 15px;
+            font-size: 18px;
+            opacity: 0.9;
+            z-index: 100;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar ul li {
+            position: relative;
+            margin: 0px 25px;
+        }
+
+        .navbar a {
+            color: #dcdcdc;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .navbar ul li::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background-color: #dbbd68;
+            transform: scaleX(0);
+            transition: transform 0.1s ease, bottom 0.2s ease;
+            z-index: 1;
+        }
+
+        .navbar ul li:hover a {
+            color: #dbbd68;
+        }
+
+        .navbar ul li:hover::after {
+            transform: scaleX(1);
+            bottom: 0;
+        }
+
+        /* Hamburher SideMenu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            width: 55px;
+            height: 100%;
+            background-color: #dbbd68;
+        }
+
+        .hamburger div {
+            width: 65%;
+            height: 5px;
+            background-color: #000000;
+            margin: 4px auto;
+        }
+
+        .hamburger .invisible {
+            background-color: #dbbd68;
+        }
+
+        /* Mobile Navigation Links */
+        .mobile-navbar {
+            position: fixed;
+            top: 0;
+            left: -102%;
+            height: 100vh;
+            width: 100vw;
+            background-color: #2a2a2a;
+            overflow-y: auto;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .mobile-navbar.open {
+            transform: translateX(100%);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .mobile-navbar ul {
+            width: 100%;
+            padding: 0;
+        }
+
+        .mobile-navbar ul li a {
+            display: block;
+            color: #dcdcdc;
+            text-decoration: none;
+            padding: 50px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        .mobile-navbar ul li a:hover {
+            color: #dbbd68;
+            font-size: 22px;
+        }
+
+        /* Close button */
+        .close-btn {
+            color: #dcdcdc;
+            font-size: 24px;
+            text-align: right;
+            margin-top: -5px;
+            margin-right: 35px;
+            background-color: #2a2a2a;
+            cursor: pointer;
+            /* Change cursor to pointer on hover */
+        }
+
+        .close-btn:hover {
+            color: #dbbd68;
+            font-size: 28px;
+        }
+
+        .Play-top {
+            background-size: 90%;
+            text-align: center;
+            padding: 45px;
+            background-repeat: no-repeat;
+            color: white;
+            font-size: 45px;
+        }
+
+        .Play-top h2 {
+            margin-top: -35px;
+            margin-bottom: 55px;
+            font-size: 30px;
+        }
+
+        .Play-top .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 20px 40px;
+            background-color: #dbbd68;
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-family: Agnella;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            position: relative;
+            overflow: hidden;
+            transition: color 0.1s ease;
+        }
+
+        .download-button:hover {
+            color: white;
+        }
+
+        .download-button::before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.4);
+            transition: all 0.1s ease;
+            z-index: 0;
+        }
+
+        .download-button:hover::before {
+            top: 0;
+            left: 0;
+            transform: translate(0, 0);
+        }
+
+        /* Style for Discord Button */
+        .join-discord-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 8px 12px;
+            margin: 10px;
+            background-color: #7289da;
+            text-decoration: none;
+            font-family: 'D-DIN', sans-serif;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+        }
+
+        .join-discord-button:hover {
+            background-color: #5b6eae;
+        }
+
+        .join-discord-button img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        /* Style for Community Stats */
+        .community-stats {
+            color: white;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .community-stats h2 {
+            color: #c1c3b4;
+            margin: 0;
+            margin-bottom: 10px;
+        }
+
+        .stats {
+            background-color: #2a2a2a;
+            border: 1px solid #3d3c3c;
+            opacity: 0.8;
+            padding: 10px;
+            margin-right: 10px;
+        }
+
+        .stats h3 {
+            margin: 0;
+        }
+
+        #slidingImage {
+            display: none;
+            transform: translateY(100%);
+        }
+
+        footer {
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            font-size: 12px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #3d3c3c;
+        }
+
+        .Changelog-top {
+            background-size: 90%;
+            text-align: center;
+            padding: 0px;
+            background-repeat: no-repeat;
+            color: white;
+            font-size: 25px;
+            padding-top: 40px;
+        }
+
+        .Changelog-top h2 {
+            margin-top: -35px;
+            margin-bottom: 55px;
+            font-size: 30px;
+        }
+
+        .More-top {
+            background-size: 90%;
+            text-align: center;
+            padding: 0px;
+            background-repeat: no-repeat;
+            color: white;
+            font-size: 25px;
+            padding-top: 40px;
+        }
+
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                /* Hide regular menu on mobile */
+            }
+
+            .navbar {
+                justify-content: center;
+                padding: 15px;
+                top: 0;
+            }
+
+            .hamburger {
+                display: flex;
+                /* Show hamburger on mobile */
+                position: absolute;
+                left: 0px;
+            }
+
+            .community-stats {
+                display: none;
+                /* Hide the community status section on mobile */
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Floating Navbar -->
+    <div class="navbar" id="navbar">
+        <div class="logo">
+            <img src='Media/Logo1.png' height="19.95" width="214.9">
+        </div>
+        <nav>
+            <ul id="navItems"></ul>
+        </nav>
+        <div class="hamburger" onclick="OpenMobileNav()">
+            <div class="invisible"></div> <!-- Invisible top line -->
+            <div></div> <!-- Middle line 1 -->
+            <div></div> <!-- Middle line 2 -->
+            <div></div> <!-- Middle line 3 -->
+            <div class="invisible"></div> <!-- Invisible bottom line -->
+        </div>
+    </div>
+    <!-- Mobile Navigation Links -->
+    <nav class="mobile-navbar">
+        <ul id="mobileNavItems">
+            <li class="close-btn" onclick="OpenMobileNav()">✖</li>
+        </ul>
+    </nav>
+
+
+    <div id="Play" class="content-section">
+        <!-- Video Background -->
+        <video class="video-background" autoplay loop muted>
+            <source src='Media\LegacyBackgroundVideo.mp4' type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <!-- Top Banner -->
+        <section class="Play-top">
+            <h1>Project Legacy</h1>
+            <h2>Relive the World of Agora</h2>
+            <div class="button-container">
+                <a href="#" class="download-button" id="playButton">PLAY FREE NOW</a>
+                <a href="https://discord.com" class="join-discord-button" target="_blank">
+                    <img src='Media/Discord1.svg' ; alt="Discord Logo">
+                    Join Discord
+                </a>
+            </div>
+        </section>
+
+        <!-- Content -->
+        <section class="Play-content">
+            <div class="community-stats">
+                <h2>Community Status</h2>
+                <div class="stats">
+                    <h3>Players <span style="color: #6c3">Online</span></h3>
+                    <span class="player-count" id="player-count">420</span>
+                </div>
+                <div class="stats">
+                    <h3>Private Servers</h3>
+                    <span class="server-count" id="serverCount">69</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div id="ChangeLog" class="content-section" style="display: none;">
+        <!-- Top -->
+        <section class="Changelog-top">
+            <h1>Agora</h1>
+            <h2>Easy peasy lemon squeezy</h2>
+        </section>
+
+        <!-- Content -->
+        <section class="ChangeLog-content">
+        </section>
+    </div>
+
+    <div id="More" class="content-section" style="display: none;">
+        <!-- Top -->
+        <section class="More-top">
+            <h2>Watch this cool stuff</h2>
+        </section>
+
+        <!-- Content -->
+        <section class="More-content">
+        </section>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <img id="slidingImage" class="sliding-image" img src='Media/Superville.png' />
+        <audio id="announcer" src='Media/Announcer1.mp3'></audio>
+        <p>Copyright © Project Legacy 2024. All rights reserved.</p>
+    </footer>
+
+    <!-- Javascript -->
+    <script>
+        // Define the navigation items
+        const navItems = [
+            { name: "Play", id: "Play" },
+            { name: "Change Log", id: "ChangeLog" },
+            { name: "More", id: "More" },
+            { name: "Wiki", url: "https://paragon.fandom.com/wiki/Legacy" },
+            { name: "Discord", url: "https://discord.com/" },
+        ];
+
+        // Function to create a nav item
+        const createNavItem = (item, isMobile = false) => {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.innerText = item.name;
+
+            if (item.url) {
+                a.href = item.url;
+                a.target = "_blank"; // Open external links in a new tab
+            } else if (item.id) {
+                a.href = `#${item.id}`;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showContent(item.id); // Call showContent for both navs
+                });
+            }
+
+            li.appendChild(a);
+            return li;
+        };
+
+        // Function to populate the navbar
+        const populateNavBar = () => {
+            const navList = document.getElementById('navItems');
+            const mobileNavList = document.getElementById('mobileNavItems');
+
+            navItems.forEach(item => {
+                navList.appendChild(createNavItem(item)); // Desktop nav
+                mobileNavList.appendChild(createNavItem(item, true)); // Mobile nav
+            });
+        };
+
+        // Call the function to populate the nav bar when the page loads
+        populateNavBar();
+
+        // Function to switch between Pages
+        const showContent = (id) => {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(id).style.display = 'block';
+
+            // Close the mobile navbar if it's open
+            closeMobileNav();
+        };
+
+        // Function to toggle the mobile menu
+        const OpenMobileNav = () => {
+            document.querySelector('.mobile-navbar').classList.toggle('open');
+        };
+
+        // Function to close the mobile navbar
+        const closeMobileNav = () => {
+            const mobileNav = document.querySelector('.mobile-navbar');
+            if (mobileNav.classList.contains('open')) {
+                mobileNav.classList.remove('open');
+            }
+        };
+
+        // Add event listener to the entire document
+        document.addEventListener('click', (event) => {
+            const mobileNav = document.querySelector('.mobile-navbar');
+            const hamburgerButton = document.querySelector('.hamburger');
+
+            if (mobileNav.classList.contains('open') && !mobileNav.contains(event.target) && !hamburgerButton.contains(event.target)) {
+                closeMobileNav();
+            }
+        });
+
+        // Function to update counts
+        function updateCounts(players, servers) {
+            document.getElementById("player-count").textContent = players;
+            document.getElementById("serverCount").textContent = servers;
+        }
+        // Call the function to update counts
+        updateCounts(420, 69); // Replace with dynamic values as needed
+
+
+        // Function to Show Superville
+        document.getElementById('playButton').addEventListener('click', function (event) {
+            event.preventDefault();
+            const image = document.getElementById('slidingImage');
+            if (image.style.display === 'block') return;
+            image.style.display = 'block';
+            const sound = document.getElementById('announcer');
+            sound.volume = 0.2;
+            sound.play();
+            image.animate([{ transform: 'translateY(100%)' }, { transform: 'translateY(10%)' }], { duration: 300, fill: 'forwards' });
+            setTimeout(() => {
+                image.animate([{ transform: 'translateY(10%)' }, { transform: 'translateY(100%)' }], { duration: 300, fill: 'forwards' });
+                setTimeout(() => image.style.display = 'none', 300);
+                // Redirect animation finishes
+                /* window.location.href = 'https://www.example.com'; // Replace with the download Client URL */
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>
