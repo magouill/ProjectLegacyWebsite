@@ -175,6 +175,17 @@ Description: Wegpage mockup for downloading the Project Legacy's files
             font-size: 22px;
         }
 
+        /* Youtube */
+        .yt-link {
+            display: flex;
+            gap: 0px;
+        }
+
+        .yt-icon {
+            width: 25px;
+            height: 25px;
+        }
+
         /* Close button */
         .close-btn {
             color: #dcdcdc;
@@ -257,13 +268,13 @@ Description: Wegpage mockup for downloading the Project Legacy's files
             align-items: center;
             justify-content: center;
             color: white;
-            padding: 8px 12px;
+            padding: 6px 10px;
             margin: 10px;
             background-color: #7289da;
             text-decoration: none;
             font-family: 'D-DIN', sans-serif;
             transition: background-color 0.3s ease;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .join-discord-button:hover {
@@ -340,16 +351,6 @@ Description: Wegpage mockup for downloading the Project Legacy's files
             font-size: 30px;
         }
 
-        .More-top {
-            background-size: 90%;
-            text-align: center;
-            padding: 0px;
-            background-repeat: no-repeat;
-            color: white;
-            font-size: 25px;
-            padding-top: 40px;
-        }
-
 
         /* Media Queries */
         @media (max-width: 768px) {
@@ -377,11 +378,6 @@ Description: Wegpage mockup for downloading the Project Legacy's files
             }
         }
     </style>
-
-<link rel="icon" type="image/png" href="Media/favicon.png"/>
-<link rel="icon" type="image/png" href="https://example.com/favicon.png"/>
-<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
-
 </head>
 
 <body>
@@ -422,7 +418,7 @@ Description: Wegpage mockup for downloading the Project Legacy's files
             <h2>Relive the World of Agora</h2>
             <div class="button-container">
                 <a href="#" class="download-button" id="playButton">PLAY FREE NOW</a>
-                <a href="https://discord.com" class="join-discord-button" target="_blank">
+                <a href="https://discord.com/invite/e8TGNu9dMA" class="join-discord-button" target="_blank">
                     <img src='Media/Discord1.svg' ; alt="Discord Logo">
                     Join Discord
                 </a>
@@ -458,22 +454,15 @@ Description: Wegpage mockup for downloading the Project Legacy's files
         </section>
     </div>
 
-    <div id="More" class="content-section" style="display: none;">
-        <!-- Top -->
-        <section class="More-top">
-            <h2>Watch this cool stuff</h2>
-        </section>
-
-        <!-- Content -->
-        <section class="More-content">
-        </section>
-    </div>
-
-
     <!-- Footer -->
     <footer>
         <img id="slidingImage" class="sliding-image" img src='Media/Superville.png' />
         <audio id="announcer" src='Media/Announcer1.mp3'></audio>
+        <div class="yt-link">
+            <a href="https://www.youtube.com/@Play_ProjectLegacy" target="_blank">
+                <img src="Media/yt-icon.png" alt="YouTube" class="yt-icon">
+            </a>
+        </div>
         <p>Copyright © Project Legacy 2024. All rights reserved.</p>
     </footer>
 
@@ -483,9 +472,7 @@ Description: Wegpage mockup for downloading the Project Legacy's files
         const navItems = [
             { name: "Play", id: "Play" },
             { name: "Change Log", id: "ChangeLog" },
-            { name: "More", id: "More" },
             { name: "Wiki", url: "https://paragon.fandom.com/wiki/Legacy" },
-            { name: "Discord", url: "https://discord.com/" },
         ];
 
         // Function to create a nav item
