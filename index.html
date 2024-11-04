@@ -1,15 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <!-- 
-Author: magouill 
+<!--
 Date: 2024-10-22
 Description: Wegpage mockup for downloading the Project Legacy's files
 -->
     <title>Project Legacy</title>
+    <!-- Meta Contents -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://magouill.github.io/ProjectLegacyWebsite/" />
+    <meta property="og:site_name" content="Paragon Project Legacy" />
+    <meta property="og:description" content="Project Legacy">
+    <meta property="og:image" content="Media/preview.png">
+    <meta name="keywords" content="Paragon">
+    <meta name="author" content="magouill">
+    <!--<link rel="stylesheet" href="styles.css">-->
+    <link rel="icon" href="Media/icon1.png" type="image/x-icon" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9RW1P16Q62"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-9RW1P16Q62');
+    </script>
+
     <style>
         @import url('https://fonts.cdnfonts.com/css/d-din');
         @import url('https://fonts.cdnfonts.com/css/agnella');
@@ -360,6 +377,11 @@ Description: Wegpage mockup for downloading the Project Legacy's files
             }
         }
     </style>
+
+<link rel="icon" type="image/png" href="Media/favicon.png"/>
+<link rel="icon" type="image/png" href="https://example.com/favicon.png"/>
+<link rel='shortcut icon' type='image/x-icon' href='/favicon.ico' />
+
 </head>
 
 <body>
@@ -559,7 +581,7 @@ Description: Wegpage mockup for downloading the Project Legacy's files
                 image.animate([{ transform: 'translateY(10%)' }, { transform: 'translateY(100%)' }], { duration: 300, fill: 'forwards' });
                 setTimeout(() => image.style.display = 'none', 300);
                 // Redirect animation finishes
-                /* window.location.href = 'https://www.example.com'; // Replace with the download Client URL */
+                window.location.href = 'https://projectlegacycdn.nyc3.cdn.digitaloceanspaces.com/basegame/v34.zip'; // Replace with the download Client URL */
             }, 1000);
         });
     </script>
